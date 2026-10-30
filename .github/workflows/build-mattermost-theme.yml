@@ -24,19 +24,19 @@ jobs:
               with:
                   node-version: 24
                   cache: "pnpm"
-                  cache-dependency-path: "mattermost-theme/pnpm-lock.yaml"
+                  cache-dependency-path: "mattermost-keycloak-login-theme/pnpm-lock.yaml"
 
             - name: Install dependencies
-              working-directory: mattermost-theme
+              working-directory: mattermost-keycloak-login-theme
               run: pnpm install --frozen-lockfile
 
             - name: Build Keycloak theme
-              working-directory: mattermost-theme
+              working-directory: mattermost-keycloak-login-theme
               run: pnpm run build-keycloak-theme
 
             - name: Rename JAR to mattermost-keycloak-theme-from-shadcn.jar
               run: |
-                  cp mattermost-theme/dist_keycloak/keycloak-theme-for-kc-22-to-25.jar \
+                  cp mattermost-keycloak-login-theme/dist_keycloak/keycloak-theme-for-kc-22-to-25.jar \
                      mattermost-keycloak-theme-from-shadcn.jar
 
             - name: Upload JAR Artifact
