@@ -15,4 +15,4 @@ pnpm dev # inspect current setting
 pnpm build-keycloak-theme # build theme jar
 ```
 
-See the original README at [upstream_README.md](upstream_README.md) for more detailed instructions.
+See the original [README.md](https://github.com/Oussemasahbeni/keycloakify-editor) for more detailed instructions.
