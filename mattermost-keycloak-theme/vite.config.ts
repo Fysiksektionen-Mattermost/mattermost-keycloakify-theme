@@ -11,7 +11,7 @@ export default defineConfig({
         tailwindcss(),
         keycloakify({
             accountThemeImplementation: "none",
-            themeName: "rfyuz_mattermost-keycloak-login-theme",
+            themeName: "rfyuz_mattermost-keycloak-theme",
             environmentVariables: [
                 {
                     name: "SHADCN_THEME_LOGO_WHITE_URL",
