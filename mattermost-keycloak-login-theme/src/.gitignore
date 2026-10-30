@@ -1,7 +1,6 @@
 # This file is managed by Keycloakify, do not edit it manually.
 
 # === Owned files start ===
-# login/components/Template/TemplateTopBar.tsx
 # === Owned files end =====
 
 # === @oussemasahbeni/keycloakify-login-shadcn v250004.0.24 ===
@@ -42,6 +41,7 @@
 /login/components/Template/index.ts
 /login/components/Template/Template.tsx
 /login/components/Template/TemplateContent.tsx
+/login/components/Template/TemplateTopBar.tsx
 /login/components/Template/useAuthChecker.ts
 /login/components/Template/useInitializeTemplate.ts
 /login/components/ui/Langauges.tsx
