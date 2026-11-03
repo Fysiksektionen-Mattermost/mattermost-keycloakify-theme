@@ -39,11 +39,40 @@ type BeforeAfterFieldProps = {
 
 type ProfileGroup = NonNullable<Attribute["group"]>;
 
-function getProfileGroups(profile: {
-    attributesByName: Record<string, Attribute>;
-    groups?: ProfileGroup[];
-}) {
-    return profile.groups ?? [];
+function isProfileGroup(value: unknown): value is ProfileGroup {
+    if (typeof value !== "object" || value === null) {
+        return false;
+    }
+
+    const group = value as Partial<ProfileGroup>;
+
+    return (
+        typeof group.name === "string" &&
+        typeof group.annotations === "object" &&
+        group.annotations !== null
+    );
+}
+
+function getProfileGroups(profile: unknown): ProfileGroup[] {
+    if (typeof profile !== "object" || profile === null) {
+        return [];
+    }
+
+    const profileRecord = profile as Record<string, unknown>;
+
+    for (const key of ["groups", "attributeGroups", "attributesGroups"]) {
+        const groups = profileRecord[key];
+
+        if (Array.isArray(groups)) {
+            return groups.filter(isProfileGroup);
+        }
+
+        if (typeof groups === "object" && groups !== null) {
+            return Object.values(groups).filter(isProfileGroup);
+        }
+    }
+
+    return [];
 }
 
 export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
@@ -84,7 +113,7 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
             {profileGroups
                 .filter(
                     group =>
-                        group.annotations["always-show"] === "true" &&
+                        String(group.annotations["always-show"]) === "true" &&
                         !attributeGroupNames.has(group.name)
                 )
                 .map(group => (
