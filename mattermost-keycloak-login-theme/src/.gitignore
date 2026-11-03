@@ -2,8 +2,10 @@
 
 # === Owned files start ===
 # login/i18n.ts
+# login/components/Template/Template.tsx
 # login/components/UserProfileFormFields/GroupLabel.tsx
 # login/components/UserProfileFormFields/UserProfileFormFields.tsx
+# login/components/Template/layouts/TwoColumnLayout.tsx
 # === Owned files end =====
 
 # === @oussemasahbeni/keycloakify-login-shadcn v250004.0.24 ===
@@ -41,7 +43,6 @@
 /login/assets/img/shape.svg
 /login/components/Template/Defaults.ts
 /login/components/Template/index.ts
-/login/components/Template/Template.tsx
 /login/components/Template/TemplateContent.tsx
 /login/components/Template/TemplateTopBar.tsx
 /login/components/Template/useAuthChecker.ts
@@ -187,7 +188,6 @@
 /login/pages/webauthn-register/useLogic.ts
 /login/components/Template/layouts/CenteredCardLayout.tsx
 /login/components/Template/layouts/ImageAsideLayout.tsx
-/login/components/Template/layouts/TwoColumnLayout.tsx
 /login/components/Template/theme/Themes.ts
 /login/components/Template/theme/ThemeTypes.ts
 /login/components/Template/theme/ThemeUtils.ts
