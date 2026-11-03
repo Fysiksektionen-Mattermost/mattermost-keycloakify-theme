@@ -23,6 +23,8 @@ See more information about the setup at https://github.com/Oussemasahbeni/keyclo
 
 #### Further modifications
 
+* The early [./public/keycloak-theme/early-color-scheme.js](./public/keycloak-theme/early-color-scheme.js) bootstrap keeps the canvas dark during Keycloak hard navigations. Its dark fallback matches the theme's `darkMode=true` configuration; the user's choice remains persisted in `localStorage`.
+
 * .storybook/.preview is modified to respect the latest changes in vite.config.ts and to remove localization support (this was unnecessary since the localization menu is hidden if localization is turned off for the production Keycloak server)
 * Several files have been owned with `npx keycloakify own --path ...` to implement required changes:
   * [./src/login/i18n.ts](./src/login/i18n.ts)
