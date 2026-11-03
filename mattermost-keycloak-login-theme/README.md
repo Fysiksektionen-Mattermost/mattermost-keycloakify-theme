@@ -1,4 +1,4 @@
-# README
+### README
 
 This folder implements @oussemasahbeni/keycloakify-login-shadcn with Fysiksektionen branding and several custom settings.
 
@@ -12,12 +12,16 @@ npx keycloakify init
 # configuration according to https://github.com/Oussemasahbeni/keycloakify-editor
 ```
 
-Notes:
+See more information about the setup at https://github.com/Oussemasahbeni/keycloakify-editor
+
+#### Notes
+
 * The welcome message that is displayed on the side panel is hardcoded and must be customized in [./src/login/i18n.ts](./src/login/i18n.ts).
 * Custom feature: Groups support the custom attribute "html-description" which overrides the displayDescription and renders as html rather than plaintext.
 * Custom feature: The register page / user account page / etc. has a group with text at the bottom that is hardcoded in [./src/login/i18n.ts](./src/login/i18n.ts). If the two custom strings are empty, then the group is not displayed.
 
-Further modifications:
+#### Further modifications
+
 * .storybook/.preview is modified to respect the latest changes in vite.config.ts and to remove localization support (this was unnecessary since the localziation)
 * Several files have been owned with `npx keycloakify own --path ...` to implement required changes:
   * [./src/login/i18n.ts](./src/login/i18n.ts)
