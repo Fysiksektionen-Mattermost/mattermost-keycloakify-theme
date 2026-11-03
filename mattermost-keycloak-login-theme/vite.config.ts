@@ -15,11 +15,11 @@ export default defineConfig({
             environmentVariables: [
                 {
                     name: "SHADCN_THEME_LOGO_WHITE_URL",
-                    default: "%BASE_URL%/fysiksektionen-logo.svg"
+                    default: "%BASE_URL%/fysiksektionen-logo-minified.svg"
                 },
                 {
                     name: "SHADCN_THEME_LOGO_DARK_URL",
-                    default: "%BASE_URL%/fysiksektionen-logo.svg"
+                    default: "%BASE_URL%/fysiksektionen-logo-minified.svg"
                 },
                 { name: "SHADCN_THEME_APP_NAME", default: "Mattermost Log-in" },
                 { name: "SHADCN_THEME_LAYOUT", default: "two-column" }, // two-column, centered-card, image-aside
