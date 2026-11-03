@@ -13,8 +13,7 @@ const { I18nProvider, useI18n } = i18nBuilder
     .withThemeName<ThemeName>()
     .withCustomTranslations({
         en: {
-            welcomeMessage:
-                "<p style='margin-bottom:10px;'>Welcome to the Mattermost log-in portal for international students. You can register an account by clicking 'Sign up'.</p><p>If you are not an international student - log in with the KTH button on <a href='https://mattermost.fysiksektionen.se', style='color:rgb(71,157,255);text-decoration:underline;'>mattermost.fysiksektionen.se</a>.</p>",
+            welcomeMessage: "Customize this welcome message with a localization realm override of the key 'welcomeMessage'. Supports HTML.",
             loginAccountTitle: "Login to your account",
             registerTitle: "Register a new account",
             noAccount: "Don't have an account?",
