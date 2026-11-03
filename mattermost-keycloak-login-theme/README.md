@@ -1,32 +1,25 @@
-# React + TypeScript + Vite
+# README
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+This folder implements @oussemasahbeni/keycloakify-login-shadcn with Fysiksektionen branding and several custom settings.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+Summary of commands run to initialize it:
+```bash
+pnpm create vite # react, TS, mattermost-keycloak-login-theme 
+cd mattermost-keycloak-login-theme
+pnpm add keycloakify @oussemasahbeni/keycloakify-login-shadcn
+pnpm install
+npx keycloakify init
+# configuration according to https://github.com/Oussemasahbeni/keycloakify-editor
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Notes:
+* The welcome message that is displayed on the side panel is hardcoded and must be customized in [./src/login/i18n.ts](./src/login/i18n.ts).
+* Custom feature: Groups support the custom attribute "html-description" which overrides the displayDescription and renders as html rather than plaintext.
+* Custom feature: The register page / user account page / etc. has a group with text at the bottom that is hardcoded in [./src/login/i18n.ts](./src/login/i18n.ts). If the two custom strings are empty, then the group is not displayed.
+
+Further modifications:
+* .storybook/.preview is modified to respect the latest changes in vite.config.ts and to remove localization support (this was unnecessary since the localziation)
+* Several files have been owned with `npx keycloakify own --path ...` to implement required changes:
+  * [./src/login/i18n.ts](./src/login/i18n.ts)
+  * [./src/login/components/UserProfileFormFields/GroupLabel.tsx](./src/login/components/UserProfileFormFields/GroupLabel.tsx)
+  * [./src/login/components/UserProfileFormFields/GroupLabel.tsx](./src/login/components/UserProfileFormFields/GroupLabel.tsx)
