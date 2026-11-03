@@ -13,7 +13,11 @@ const { I18nProvider, useI18n } = i18nBuilder
     .withThemeName<ThemeName>()
     .withCustomTranslations({
         en: {
-            welcomeMessage: "Customize this welcome message with a localization realm override of the key 'welcomeMessage'. Supports HTML.",
+            // CUSTOM:
+            welcomeMessage: "<p style='margin-bottom:10px;'>Welcome to the Mattermost log-in portal for international students. You can register an account by clicking 'Sign up'.</p><p>If you are not an international student - log in with the KTH button on <a href='https://mattermost.fysiksektionen.se', style='color:rgb(71,157,255);text-decoration:underline;'>mattermost.fysiksektionen.se</a>.</p>",
+            registerFormGroupTitle: "Privacy",
+            registerFormGroupDescription: "The Physics Chapter processes your submitted personal details according to our privacy policy which can be found at <a href='https://f.kth.se/privacy', style='color:rgb(71,157,255);text-decoration:underline;'>https://f.kth.se/privacy</a>.",
+            // shadcn defaults:
             loginAccountTitle: "Login to your account",
             registerTitle: "Register a new account",
             noAccount: "Don't have an account?",

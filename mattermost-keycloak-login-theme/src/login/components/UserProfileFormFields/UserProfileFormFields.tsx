@@ -37,44 +37,6 @@ type BeforeAfterFieldProps = {
     valueOrValues: string | string[];
 };
 
-type ProfileGroup = NonNullable<Attribute["group"]>;
-
-function isProfileGroup(value: unknown): value is ProfileGroup {
-    if (typeof value !== "object" || value === null) {
-        return false;
-    }
-
-    const group = value as Partial<ProfileGroup>;
-
-    return (
-        typeof group.name === "string" &&
-        typeof group.annotations === "object" &&
-        group.annotations !== null
-    );
-}
-
-function getProfileGroups(profile: unknown): ProfileGroup[] {
-    if (typeof profile !== "object" || profile === null) {
-        return [];
-    }
-
-    const profileRecord = profile as Record<string, unknown>;
-
-    for (const key of ["groups", "attributeGroups", "attributesGroups"]) {
-        const groups = profileRecord[key];
-
-        if (Array.isArray(groups)) {
-            return groups.filter(isProfileGroup);
-        }
-
-        if (typeof groups === "object" && groups !== null) {
-            return Object.values(groups).filter(isProfileGroup);
-        }
-    }
-
-    return [];
-}
-
 export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
     const { onIsFormSubmittableValueChange, BeforeField, AfterField } = props;
 
@@ -85,6 +47,8 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
     const i18n = useI18n();
 
     const { advancedMsg } = i18n;
+    const registerFormGroupTitle = i18n.msgStr("registerFormGroupTitle");
+    const registerFormGroupDescription = i18n.msgStr("registerFormGroupDescription");
 
     const {
         formState: { formFieldStates, isFormSubmittable },
@@ -99,30 +63,10 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
         onIsFormSubmittableValueChange(isFormSubmittable);
     }, [isFormSubmittable]);
 
-    const profileGroups = getProfileGroups(kcContext.profile);
-    const attributeGroupNames = new Set(
-        Object.values(kcContext.profile.attributesByName)
-            .filter((attribute): attribute is Attribute => attribute !== undefined)
-            .map(attribute => attribute.group?.name)
-            .filter((name): name is string => name !== undefined)
-    );
     const groupNameRef = { current: "" };
 
     return (
         <>
-            {profileGroups
-                .filter(
-                    group =>
-                        String(group.annotations["always-show"]) === "true" &&
-                        !attributeGroupNames.has(group.name)
-                )
-                .map(group => (
-                    <GroupLabel
-                        key={group.name}
-                        group={group}
-                        groupNameRef={groupNameRef}
-                    />
-                ))}
             {formFieldStates.map(({ attribute, displayableErrors, valueOrValues }) => {
                 return (
                     <Fragment key={attribute.name}>
@@ -195,6 +139,20 @@ export function UserProfileFormFields(props: UserProfileFormFieldsProps) {
                     </Fragment>
                 );
             })}
+            {(registerFormGroupTitle !== "" || registerFormGroupDescription !== "") && (
+                <GroupLabel
+                    group={{
+                        name: "register-form-group",
+                        displayHeader: registerFormGroupTitle,
+                        annotations: {
+                            "html-description": registerFormGroupDescription
+                        },
+                        html5DataAnnotations: {}
+                    }}
+                    hideHeader={registerFormGroupTitle === ""}
+                    groupNameRef={groupNameRef}
+                />
+            )}
         </>
     );
 }

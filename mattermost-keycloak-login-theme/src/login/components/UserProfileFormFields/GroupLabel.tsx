@@ -16,11 +16,12 @@ import { assert } from "tsafe/assert";
 export function GroupLabel(props: {
     attribute?: Attribute;
     group?: NonNullable<Attribute["group"]>;
+    hideHeader?: boolean;
     groupNameRef: {
         current: string;
     };
 }) {
-    const { attribute, group: groupFromProps, groupNameRef } = props;
+    const { attribute, group: groupFromProps, groupNameRef, hideHeader = false } = props;
 
     const { advancedMsg } = useI18n();
 
@@ -51,20 +52,22 @@ export function GroupLabel(props: {
                         ])
                     )}
                 >
-                    <div className={cn("", kcClsx("kcContentWrapperClass"))}>
-                        <h3
-                            id={`header-${group.name}`}
-                            className={cn(
-                                "text-lg font-semibold",
-                                kcClsx("kcFormGroupHeader")
-                            )}
-                        >
-                            {group.displayHeader !== undefined &&
-                            group.displayHeader !== ""
-                                ? advancedMsg(group.displayHeader)
-                                : group.name}
-                        </h3>
-                    </div>
+                    {!hideHeader && (
+                        <div className={cn("", kcClsx("kcContentWrapperClass"))}>
+                            <h3
+                                id={`header-${group.name}`}
+                                className={cn(
+                                    "text-lg font-semibold",
+                                    kcClsx("kcFormGroupHeader")
+                                )}
+                            >
+                                {group.displayHeader !== undefined &&
+                                group.displayHeader !== ""
+                                    ? advancedMsg(group.displayHeader)
+                                    : group.name}
+                            </h3>
+                        </div>
+                    )}
                     {groupDisplayDescription !== "" && (
                         <div className={cn("", kcClsx("kcLabelWrapperClass"))}>
                             {htmlDescription !== undefined ? (
