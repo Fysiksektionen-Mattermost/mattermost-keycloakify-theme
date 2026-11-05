@@ -22,6 +22,9 @@ export function Form() {
 
     const [isFormSubmittable, setIsFormSubmittable] = useState(false);
     const [areTermsAccepted, setAreTermsAccepted] = useState(false);
+    const isSubmitDisabled =
+        !isFormSubmittable ||
+        (kcContext.termsAcceptanceRequired && !areTermsAccepted);
 
     useLayoutEffect(() => {
         (window as any)["onSubmitRecaptcha"] = () => {
@@ -71,6 +74,7 @@ export function Form() {
                     kcContext.recaptchaAction !== undefined ? (
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
                         <Button
+                            disabled={isSubmitDisabled}
                             className="w-full mt-2 g-recaptcha"
                             data-sitekey={kcContext.recaptchaSiteKey}
                             data-callback="onSubmitRecaptcha"
@@ -82,10 +86,7 @@ export function Form() {
                     </div>
                 ) : (
                     <Button
-                        disabled={
-                            !isFormSubmittable ||
-                            (kcContext.termsAcceptanceRequired && !areTermsAccepted)
-                        }
+                        disabled={isSubmitDisabled}
                         className="w-full mt-2"
                         name="register"
                         type="submit"
