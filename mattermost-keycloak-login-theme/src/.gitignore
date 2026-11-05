@@ -4,6 +4,7 @@
 # login/i18n.ts
 # login/components/Template/Template.tsx
 # login/components/UserProfileFormFields/GroupLabel.tsx
+# login/components/UserProfileFormFields/SelectTag.tsx
 # login/components/UserProfileFormFields/UserProfileFormFields.tsx
 # login/pages/register/Form.tsx
 # login/components/Template/layouts/TwoColumnLayout.tsx
@@ -58,7 +59,6 @@
 /login/components/UserProfileFormFields/InputLabel.tsx
 /login/components/UserProfileFormFields/InputTag.tsx
 /login/components/UserProfileFormFields/InputTagSelects.tsx
-/login/components/UserProfileFormFields/SelectTag.tsx
 /login/components/UserProfileFormFields/TextareaTag.tsx
 /login/components/WebAuthnConditionalUi/index.ts
 /login/components/WebAuthnConditionalUi/useLogic.tsx
