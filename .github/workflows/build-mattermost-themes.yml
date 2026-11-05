@@ -1,0 +1,78 @@
+name: Build and Publish Keycloak themes
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+jobs:
+    build-and-publish:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 12.16.1
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: "pnpm"
+                  cache-dependency-path: |
+                      mattermost-keycloak-login-theme/pnpm-lock.yaml
+                      mattermost-keycloak-email-theme/pnpm-lock.yaml
+
+            - name: Install login theme dependencies
+              working-directory: mattermost-keycloak-login-theme
+              run: pnpm install --frozen-lockfile
+
+            - name: Build login theme
+              working-directory: mattermost-keycloak-login-theme
+              run: pnpm run build-keycloak-theme
+
+            - name: Install email theme dependencies
+              working-directory: mattermost-keycloak-email-theme
+              run: pnpm install --frozen-lockfile
+
+            - name: Build email theme
+              working-directory: mattermost-keycloak-email-theme
+              run: pnpm run build-keycloak-theme
+
+            - name: Rename login theme JAR
+              run: |
+                  cp mattermost-keycloak-login-theme/dist_keycloak/keycloak-theme-for-kc-22-to-25.jar \
+                     mattermost-keycloak-login-theme-from-shadcn.jar
+
+            - name: Rename email theme JAR
+              run: |
+                  cp mattermost-keycloak-email-theme/dist_keycloak/keycloak-theme-for-kc-22-to-25.jar \
+                     mattermost-keycloak-email-theme.jar
+
+            - name: Upload theme artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: mattermost-keycloak-themes
+                  path: |
+                      mattermost-keycloak-login-theme-from-shadcn.jar
+                      mattermost-keycloak-email-theme.jar
+
+            - name: Publish to GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: "latest"
+                  name: "latest (${{ github.sha }})"
+                  body: |
+                      Automated build of the Mattermost login and email Keycloak themes for Keycloak 22 to 25.
+                      Commit: ${{ github.sha }}
+                  files: |
+                      mattermost-keycloak-login-theme-from-shadcn.jar
+                      mattermost-keycloak-email-theme.jar
+                  make_latest: true
