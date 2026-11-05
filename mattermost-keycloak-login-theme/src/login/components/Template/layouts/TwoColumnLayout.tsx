@@ -1,10 +1,8 @@
 /**
- * WARNING: Before modifying this file, run the following command:
+ * This file has been claimed for ownership from @oussemasahbeni/keycloakify-login-shadcn version 250004.0.24.
+ * To relinquish ownership and restore this file to its original content, run the following command:
  * 
- * $ npx keycloakify own --path "login/components/Template/layouts/TwoColumnLayout.tsx"
- * 
- * This file is provided by @oussemasahbeni/keycloakify-login-shadcn version 250004.0.24.
- * It was copied into your repository by the postinstall script: `keycloakify sync-extensions`.
+ * $ npx keycloakify own --path "login/components/Template/layouts/TwoColumnLayout.tsx" --revert
  */
 
 /* eslint-disable */
@@ -32,7 +30,7 @@ export function TwoColumnLayout(props: {
             <div className="relative flex min-h-0 flex-col overflow-y-auto pb-6 lg:p-6 lg:pt-10">
                 <TemplateTopBar />
 
-                <div className="flex flex-1 flex-col items-center p-6 md:p-10">
+                <div className="flex flex-1 flex-col items-center p-6 pt-20 md:p-10">
                     <div className="flex w-full flex-1 items-center justify-center">
                         <main className="w-full max-w-xl">{content}</main>
                     </div>
