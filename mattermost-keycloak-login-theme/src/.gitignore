@@ -5,6 +5,7 @@
 # login/components/Template/Template.tsx
 # login/components/UserProfileFormFields/GroupLabel.tsx
 # login/components/UserProfileFormFields/UserProfileFormFields.tsx
+# login/pages/register/Form.tsx
 # login/components/Template/layouts/TwoColumnLayout.tsx
 # === Owned files end =====
 
@@ -156,7 +157,6 @@
 /login/pages/logout-confirm/index.ts
 /login/pages/logout-confirm/Page.stories.tsx
 /login/pages/logout-confirm/Page.tsx
-/login/pages/register/Form.tsx
 /login/pages/register/index.ts
 /login/pages/register/Page.stories.tsx
 /login/pages/register/Page.tsx
