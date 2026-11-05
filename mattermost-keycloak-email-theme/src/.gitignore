@@ -1,7 +1,8 @@
 # This file is managed by Keycloakify, do not edit it manually.
 
 # === Owned files start ===
-# /email/html/template.ftl
+# email/html/template.ftl
+# ../../../../../../../email/html/template.ftl
 # === Owned files end =====
 
 # === @keycloakify/email-native v260007.0.0 ===
